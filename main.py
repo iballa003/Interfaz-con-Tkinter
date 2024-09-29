@@ -4,11 +4,13 @@ from PIL import Image, ImageTk
 import os
 import random
 
+#Inicializar variables
 listaImagenes = os.listdir("./hiragana")
 listaAleato = random.choice(listaImagenes)
 listaAleatoSinExt = listaAleato.split(".")[0]
 contador = 0
 listaImagenUsadas = []
+listaImagenUsadas.append(listaAleato)
 
 def comprobarInput():
     global contador
@@ -21,9 +23,10 @@ def comprobarInput():
     cambiarImagen()
 
 def cambiarImagen():
+    global contador
     global listaAleatoSinExt
     listaAleato2 = random.choice(listaImagenes)
-    print(listaImagenUsadas)
+    print(f"imagenes usadas {listaImagenUsadas}")
     if listaAleato2 in listaImagenUsadas: 
         print("exist")
         cambiarImagen()
@@ -35,7 +38,9 @@ def cambiarImagen():
     image_label.configure(image=image2)
     image_label.im=image2
     listaAleatoSinExt = listaAleato2.split(".")[0]
-    print(listaAleatoSinExt)    
+    print(listaAleatoSinExt)
+    if len(listaImagenUsadas) == 10:
+        print(contador) 
       
 root = Tk()
 root.geometry("200x300")

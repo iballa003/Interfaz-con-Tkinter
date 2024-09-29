@@ -18,6 +18,24 @@ def comprobarInput():
     else:
         print("Incorrecto")
     #listaImagenUsadas.append(listaAleato)
+    cambiarImagen()
+
+def cambiarImagen():
+    global listaAleatoSinExt
+    listaAleato2 = random.choice(listaImagenes)
+    print(listaImagenUsadas)
+    if listaAleato2 in listaImagenUsadas: 
+        print("exist")
+        cambiarImagen()
+    else: 
+        print("not exist")
+        listaImagenUsadas.append(listaAleato2)
+        
+    image2 = ImageTk.PhotoImage(Image.open("hiragana/"+listaAleato2))
+    image_label.configure(image=image2)
+    image_label.im=image2
+    listaAleatoSinExt = listaAleato2.split(".")[0]
+    print(listaAleatoSinExt)    
       
 root = Tk()
 root.geometry("200x300")
